@@ -25,7 +25,7 @@ var downloadFileToLocation = function(url, filename, callback) {
   stream.on('error', callback);
   var requestStream = request.get(url)
   requestStream.on('response', function(response) {
-    if (response.statusCode == 404) {
+    if (response.statusCode === 404) {
       console.error('download not found:', url);
       process.exit(1);
     }
@@ -35,8 +35,8 @@ var downloadFileToLocation = function(url, filename, callback) {
 
 var downloadTarballAndExtract = function(url, location, callback) {
   var tempPath = temp.mkdirSync('apm-node-');
-  var stream = tar.Extract({
-    path: tempPath
+  var stream = tar.extract({
+    C: tempPath
   });
   stream.on('end', function() {
     callback.call(this, tempPath);
@@ -44,11 +44,11 @@ var downloadTarballAndExtract = function(url, location, callback) {
   stream.on('error', callback);
   var requestStream = request.get(url)
   requestStream.on('response', function(response) {
-    if (response.statusCode == 404) {
+    if (response.statusCode === 404) {
       console.error('download not found:', url);
       process.exit(1);
     }
-    requestStream.pipe(zlib.createGunzip()).pipe(stream);
+    requestStream.pipe(zlib.Gunzip()).pipe(stream);
   });
 };
 

@@ -87,12 +87,11 @@ parseOptions = (args=[]) ->
 showHelp = (options) ->
   return unless options?
 
-  help = options.help()
-  if help.indexOf('Options:') >= 0
-    help += "\n  Prefix an option with `no-` to set it to false such as --no-color to disable"
-    help += "\n  colored output."
+  help = options.showHelp('error')
+  if help.parsed.argv._.length > 0
+    console.error("  Prefix an option with `no-` to set it to false such as --no-color to disable")
+    console.error("  colored output.")
 
-  console.error(help)
 
 printVersions = (args, callback) ->
   apmVersion =  require('../package.json').version ? ''
