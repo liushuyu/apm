@@ -19,7 +19,9 @@
     "prepublish": "grunt prepublish",
     "install": "node script/postinstall.js",
     "test": "node script/check-version.js && grunt test",
-    "check-version": "node version.js"
+    "check-version": "node version.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "asar-require": "0.3.0",
@@ -47,7 +49,8 @@
     "underscore-plus": "1.x",
     "wordwrap": "1.0.0",
     "wrench": "~1.5.9",
-    "yargs": "^11.0.0"
+    "yargs": "^11.0.0",
+    "snyk": "^1.88.0"
   },
   "devDependencies": {
     "coffeescript": "^2.2.1",
@@ -58,5 +61,6 @@
     "grunt-contrib-coffee": "^2.0.0",
     "grunt-shell": "^2.1.0",
     "jasmine-focused": ">=1.0.7 <2.0"
-  }
+  },
+  "snyk": true
 }
