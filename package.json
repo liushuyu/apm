@@ -16,10 +16,11 @@
   },
   "scripts": {
     "build": "node script/check-version.js && grunt",
-    "prepublish": "grunt prepublish",
+    "prepublish": "npm run snyk-protect && grunt prepublish",
     "install": "node script/postinstall.js",
     "test": "node script/check-version.js && grunt test",
-    "check-version": "node version.js"
+    "check-version": "node version.js",
+    "snyk-protect": "snyk protect"
   },
   "dependencies": {
     "asar-require": "0.3.0",
@@ -47,7 +48,8 @@
     "underscore-plus": "1.x",
     "wordwrap": "1.0.0",
     "wrench": "~1.5.9",
-    "yargs": "^12.0.5"
+    "yargs": "^12.0.5",
+    "snyk": "^1.230.5"
   },
   "devDependencies": {
     "coffeescript": "^2.3.2",
@@ -58,5 +60,6 @@
     "grunt-contrib-coffee": "^2.0.0",
     "grunt-shell": "^3.0.1",
     "jasmine-focused": ">=1.0.7 <2.0"
-  }
+  },
+  "snyk": true
 }
